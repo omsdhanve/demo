@@ -1,0 +1,345 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Pharmaceutical Analysis — Ms. Silver Soul</title>
+  <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate" />
+  <meta http-equiv="Pragma" content="no-cache" />
+  <meta http-equiv="Expires" content="0" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --primary:#0F62FE; --secondary:#0B6E4F; --accent:#FF6B6B;
+      --bg:#F8FAFC; --text:#111827; --muted:#6B7280;
+      --card:#FFFFFF; --focus: rgba(15,98,254,0.24); --max-w:1100px;
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial;background:var(--bg);color:var(--text);padding:22px;min-height:100vh;display:flex;justify-content:center}
+    .wrap{width:100%;max-width:var(--max-w)}
+
+    header{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px}
+    .logo{font-family:Poppins,font-weight:700;color:var(--primary);font-weight:700;color:var(--primary);font-size:20px}
+    .btn-logout{padding:8px 12px;border-radius:10px;border:1px solid #E6E9EE;background:white;cursor:pointer}
+
+    .hero{background:linear-gradient(90deg, rgba(15,98,254,0.06), rgba(11,110,79,0.03));padding:14px;border-radius:12px;display:flex;align-items:center;gap:14px;box-shadow:0 6px 18px rgba(12,18,30,0.06);margin-bottom:18px}
+    .hero img{width:56px;height:56px;border-radius:50%;object-fit:cover}
+    .hero .text h2{margin:0;font-size:18px}
+    .hero .text p{margin:0;color:var(--muted);font-size:13px}
+
+    .card{background:var(--card);padding:18px;border-radius:12px;box-shadow:0 10px 30px rgba(12,18,30,0.06);}
+    .section-title{font-weight:700;margin:6px 0 12px;font-size:16px;color:var(--text)}
+
+    /* MCQ list styling */
+    ol.mcq-list { margin-left:22px; padding-left:8px; }
+    ol.mcq-list > li { margin:6px 0 10px; padding-left:6px; }
+    .choices { display:flex; flex-wrap:wrap; gap:6px 28px; margin-top:8px; }
+    .choice { min-width:180px; flex:1 1 180px; color:var(--text); font-size:15px; }
+    @media (max-width:720px){ .choice { min-width:140px; flex:1 1 140px } }
+
+    /* Other lists */
+    ol.other-list { margin-left:22px; padding-left:8px; }
+    ol.other-list > li { margin:6px 0; padding-left:6px }
+
+    .subtle{color:var(--muted);font-size:13px;margin-top:14px}
+
+    footer{margin-top:18px;text-align:center;color:var(--muted);font-size:13px}
+
+    /* Logout modal + confirm overlay */
+    .modal-backdrop{position:fixed;inset:0;background:rgba(2,6,23,0.45);display:none;align-items:center;justify-content:center;z-index:80}
+    .modal-backdrop.show{display:flex}
+    .modal{background:var(--card);padding:20px;border-radius:14px;width:min(92%,560px);box-shadow:0 30px 60px rgba(2,6,23,0.28);border:1px solid rgba(15,22,36,0.06)}
+    .input{width:100%;min-height:48px;padding:12px 14px;border-radius:10px;border:1px solid rgba(15,22,36,0.06);}
+    .btn-secondary{padding:10px 14px;border-radius:10px;border:1px solid rgba(17,24,39,0.06);background:white;cursor:pointer}
+    .btn-open{padding:10px 16px;border-radius:10px;background:linear-gradient(90deg,var(--primary), #2563EB);color:white;border:none;cursor:pointer}
+
+    @media (max-width:640px){ .hero{padding:12px} .card{padding:14px} }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="logo">Pharmaceutical Analysis — Questions</div>
+      <div>
+        <button class="btn-logout" id="logoutBtn">Logout</button>
+      </div>
+    </header>
+
+    <section class="hero" aria-live="polite">
+      <img src="Shona.jpg" alt="Ms. Silver Soul" />
+      <div class="text">
+        <h2 id="greeting">Pharmaceutical Analysis — Question Bank</h2>
+       
+      </div>
+    </section>
+
+    <main>
+      <div class="card">
+        <!-- A. Multiple choice questions -->
+        <div class="section-title">1. (A) Multiple choice questions. Each question carries equal marks :</div>
+
+        <ol class="mcq-list">
+          <li>
+            Complexometric titration are useful for the determination of ___________.
+            <div class="choices">
+              <div class="choice">(a) Metal ions</div>
+              <div class="choice">(b) Non metal ions</div>
+              <div class="choice">(c) Acidic ions</div>
+              <div class="choice">(d) All of the above</div>
+            </div>
+          </li>
+
+          <li>
+            The number of moles of solute per litre of solvent is known as ___________.
+            <div class="choices">
+              <div class="choice">(a) Normality</div>
+              <div class="choice">(b) Molarity</div>
+              <div class="choice">(c) Molality</div>
+              <div class="choice">(d) Formality</div>
+            </div>
+          </li>
+
+          <li>
+            Solubility of sparingly soluble salt can be determined by ___________.
+            <div class="choices">
+              <div class="choice">(a) Polarography</div>
+              <div class="choice">(b) Conductometry</div>
+              <div class="choice">(c) Potentiometry</div>
+              <div class="choice">(d) None of these</div>
+            </div>
+          </li>
+
+          <li>
+            The direct titration of standard solution of iodine is called ___________.
+            <div class="choices">
+              <div class="choice">(a) Iodometry</div>
+              <div class="choice">(b) Iodimetry</div>
+              <div class="choice">(c) Redox titration</div>
+              <div class="choice">(d) Indirect iodimetry</div>
+            </div>
+          </li>
+
+          <li>
+            Which analytical method is based on weight of precipitate ?
+            <div class="choices">
+              <div class="choice">(a) Acid base titration</div>
+              <div class="choice">(b) Gravimetry</div>
+              <div class="choice">(c) Precipitation titration</div>
+              <div class="choice">(d) Complexometric titration</div>
+            </div>
+          </li>
+
+          <li>
+            Potentiometry is a/an __________ method of analysis.
+            <div class="choices">
+              <div class="choice">(a) Qualitative</div>
+              <div class="choice">(b) Chromatographic</div>
+              <div class="choice">(c) Electrochemical</div>
+              <div class="choice">(d) Spectroscopic</div>
+            </div>
+          </li>
+
+          <li>
+            In complexometric titration ligand and metal ion join together by ___________.
+            <div class="choices">
+              <div class="choice">(a) H - bonding</div>
+              <div class="choice">(b) Co-ordinate covalent bond</div>
+              <div class="choice">(c) Covalent bond</div>
+              <div class="choice">(d) Ionic bond</div>
+            </div>
+          </li>
+
+          <li>
+            In polarography __________ electrode is used.
+            <div class="choices">
+              <div class="choice">(a) Platinum</div>
+              <div class="choice">(b) Glass</div>
+              <div class="choice">(c) Dropping mercury</div>
+              <div class="choice">(d) All of the above</div>
+            </div>
+          </li>
+
+          <li>
+            Solution of known concentration is called ___________.
+            <div class="choices">
+              <div class="choice">(a) Primary standard</div>
+              <div class="choice">(b) Titrant</div>
+              <div class="choice">(c) Indicator</div>
+              <div class="choice">(d) Titrand</div>
+            </div>
+          </li>
+
+          <li>
+            Diffusion current can be correlated with different conditions by __________.
+            <div class="choices">
+              <div class="choice">(a) Nernst equation</div>
+              <div class="choice">(b) Bragg's equation</div>
+              <div class="choice">(c) Ilkovic equation</div>
+              <div class="choice">(d) Beer's equation</div>
+            </div>
+          </li>
+
+          <li>
+            Use of adsorption indicators is the characteristic feature of :
+            <div class="choices">
+              <div class="choice">(a) Volhard's Method</div>
+              <div class="choice">(b) Mohr's Method</div>
+              <div class="choice">(c) Kjeldahl Method</div>
+              <div class="choice">(d) Fajan's Method</div>
+            </div>
+          </li>
+
+          <li>
+            PM indicators are also referred as :
+            <div class="choices">
+              <div class="choice">(a) Monochrome</div>
+              <div class="choice">(b) Auxochrome</div>
+              <div class="choice">(c) Metallochrome</div>
+              <div class="choice">(d) Dichrome</div>
+            </div>
+          </li>
+
+          <li>
+            A linear relationship exists between pH of solution and :
+            <div class="choices">
+              <div class="choice">(a) Turbidity of solution</div>
+              <div class="choice">(b) Colour of solution</div>
+              <div class="choice">(c) Potential of solution</div>
+              <div class="choice">(d) Normality of solution</div>
+            </div>
+          </li>
+
+          <li>
+            Solubility of sparingly soluble salt can be determined by :
+            <div class="choices">
+              <div class="choice">(a) Conductometry</div>
+              <div class="choice">(b) Potentiometry</div>
+              <div class="choice">(c) Gravimetry</div>
+              <div class="choice">(d) Fluorometry</div>
+            </div>
+          </li>
+
+          <li>
+            0.1 N NaOH can be standardised by using potassium hydrogen phthalate or :
+            <div class="choices">
+              <div class="choice">(a) Oxalic Acid</div>
+              <div class="choice">(b) Acetic Acid</div>
+              <div class="choice">(c) Formic Acid</div>
+              <div class="choice">(d) Ammonia</div>
+            </div>
+          </li>
+        </ol>
+
+        <!-- (B) Solve following questions -->
+        <div class="section-title" style="margin-top:12px">(B) Write answer of following questions (Any <strong>Five</strong>) :</div>
+        <ol class="other-list">
+          <li>Define co-precipitation and post precipitation.</li>
+          <li>What are masking and de-masking agents ?</li>
+          <li>Define the terms normality and molarity.</li>
+          <li>What are aprotic solvents ? Give examples.</li>
+          <li>Define molar conductance and specific conductance.</li>
+          <li>Name solvents used in the non-aqueous titration.</li>
+        </ol>
+
+        <!-- 2. Attempt any Two (long answer) -->
+        <div class="section-title" style="margin-top:12px">2. Attempt any <strong>Two</strong> of following questions :</div>
+        <ol class="other-list">
+          <li>What is acid-base titration? Explain the neutralization curves in acid base titration.</li>
+          <li>What are errors ? Classify them. Define accuracy and precision. Describe steps to minimize errors.</li>
+          <li>What is redox titration ? Explain the types of redox.</li>
+        </ol>
+
+        <!-- 3. Attempt any Seven -->
+        <div class="section-title" style="margin-top:12px">3. Attempt any <strong>Seven</strong> questions of following :</div>
+        <ol class="other-list">
+          <li>Explain the conductometric titration curves for strong acid with weak base.</li>
+          <li>Write construction and working of glass electrode with advantages and disadvantages.</li>
+          <li>How do you prepare and standardize 0.1 N perchloric acid solution?</li>
+          <li>Explain principles involved in complexometric titration. Write in detail about estimation of magnesium sulphate.</li>
+          <li>Classify precipitation titration with example. Explain Mohr's method in detail.</li>
+          <li>Write method of preparation and standardization of 0.1 N sodium hydroxide solution.</li>
+          <li>How do you calculate the equivalent weight and molecular weight of substance ? Give examples.</li>
+          <li>Explain principle and procedure involved in Volhard's method.</li>
+          <li>Write construction and working of the conductivity cell.</li>
+        </ol>
+
+        
+      </div>
+    </main>
+
+    <footer>Made by @Your_AHOO❤️</footer>
+  </div>
+
+  <!-- Logout modal -->
+  <div class="modal-backdrop" id="logout-modal" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="modal" role="document">
+      <h3 style="margin:0 0 8px;color:var(--primary);font-size:18px">Confirm logout</h3>
+      <p style="margin:0 0 12px;color:var(--muted)">Please type the phrase <strong>"I Love You Baby"</strong> (case-insensitive) to confirm logout.</p>
+      <input id="logout-input" class="input" placeholder="Type the phrase here" aria-label="Logout confirmation input" />
+      <div style="display:flex;gap:12px;justify-content:flex-start;margin-top:14px">
+        <button class="btn-secondary" id="cancel-logout">Cancel</button>
+        <button class="btn-open" id="logout-next">Next</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Confirm overlay -->
+  <div class="modal-backdrop" id="confirm-overlay" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="modal" style="text-align:center">
+      <h3 style="margin:0 0 8px;color:var(--secondary);font-size:18px">I Love Too Shona❤️</h3>
+      <p style="margin:0;color:var(--muted)">Logging out...</p>
+    </div>
+  </div>
+
+  <script>
+    // Protect page + BFCache
+    (function(){
+      try{ if(!sessionStorage.getItem('logged')) window.location.replace('./index.html'); }catch(e){ window.location.replace('./index.html'); }
+      window.addEventListener('pageshow', function(e){ if(e.persisted || !sessionStorage.getItem('logged')) window.location.replace('./index.html'); });
+      document.addEventListener('visibilitychange', function(){ if(document.visibilityState === 'visible' && !sessionStorage.getItem('logged')) window.location.replace('./index.html'); });
+    })();
+
+    // Greeting (time-based header)
+    (function(){
+      try {
+        const now = new Date();
+        const hour = now.getHours();
+        const g = hour < 12 ? 'Good Morning, Ms. Silver Soul' : hour < 17 ? 'Good Afternoon, Ms. Silver Soul' : 'Good Evening, Ms. Silver Soul';
+        document.getElementById('greeting').textContent = g;
+        document.getElementById('greeting-sub').textContent = 'Question bank — add questions directly into the HTML.';
+      } catch(e){}
+    })();
+
+    // Logout flow
+    const logoutBtn = document.getElementById('logoutBtn');
+    const logoutModal = document.getElementById('logout-modal');
+    const logoutInput = document.getElementById('logout-input');
+    const logoutNext = document.getElementById('logout-next');
+    const cancelLogout = document.getElementById('cancel-logout');
+    const confirmOverlay = document.getElementById('confirm-overlay');
+
+    function openModal(){ logoutModal.classList.add('show'); logoutModal.style.display='flex'; logoutModal.setAttribute('aria-hidden','false'); setTimeout(()=>logoutInput.focus(),40); }
+    function closeModal(){ logoutModal.classList.remove('show'); logoutModal.style.display='none'; logoutModal.setAttribute('aria-hidden','true'); }
+
+    logoutBtn.addEventListener('click', ()=>{ logoutInput.value=''; openModal(); });
+    cancelLogout.addEventListener('click', ()=> closeModal());
+
+    logoutNext.addEventListener('click', ()=>{
+      const val=(logoutInput.value||'').trim().toLowerCase();
+      if(val==='i love you baby'){
+        closeModal();
+        confirmOverlay.style.display='flex'; confirmOverlay.classList.add('show');
+        try{ sessionStorage.removeItem('logged'); }catch(e){}
+        try{ localStorage.clear(); }catch(e){}
+        setTimeout(()=>{ window.location.replace('./index.html'); },900);
+      } else {
+        logoutInput.animate([{transform:'translateX(0)'},{transform:'translateX(-8px)'},{transform:'translateX(8px)'},{transform:'translateX(0)'}],{duration:260,iterations:1});
+        logoutInput.focus();
+      }
+    });
+
+    logoutInput.addEventListener('keydown',(e)=>{ if(e.key==='Enter') logoutNext.click(); });
+    document.addEventListener('keydown',(e)=>{ if(e.key==='Escape') closeModal(); });
+  </script>
+</body>
+</html>

@@ -1,0 +1,275 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Timetable — Ms. Silver Soul</title>
+  <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate" />
+  <meta http-equiv="Pragma" content="no-cache" />
+  <meta http-equiv="Expires" content="0" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --primary:#0F62FE; --secondary:#0B6E4F; --accent:#FF6B6B;
+      --bg:#F8FAFC; --text:#111827; --muted:#6B7280; --card:#FFFFFF;
+      --max-w:1100px; --focus: rgba(15,98,254,0.24);
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial;background:var(--bg);color:var(--text);padding:18px;min-height:100vh;display:flex;justify-content:center}
+    .wrap{width:100%;max-width:var(--max-w)}
+
+    header{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
+    .logo{font-family:Poppins;font-weight:700;color:var(--primary);font-size:20px}
+    .header-actions{display:flex;gap:12px;align-items:center}
+    .btn-logout{padding:8px 12px;border-radius:10px;border:1px solid #E6E9EE;background:white;cursor:pointer}
+
+    .hero{background:linear-gradient(90deg, rgba(15,98,254,0.06), rgba(11,110,79,0.03));padding:12px;border-radius:12px;display:flex;align-items:center;gap:12px;box-shadow:0 6px 18px rgba(12,18,30,0.06);margin-bottom:14px}
+    .hero img{width:50px;height:50px;border-radius:50%;object-fit:cover}
+    .hero .text h2{margin:0;font-size:17px}
+    .hero .text p{margin:0;color:var(--muted);font-size:13px}
+
+    .section{background:var(--card);padding:14px;border-radius:12px;box-shadow:0 10px 30px rgba(12,18,30,0.06);margin-bottom:14px}
+    .section h3{margin:0 0 8px;font-size:15px;color:var(--primary)}
+    .meta{font-size:13px;color:var(--muted);margin-bottom:8px}
+
+    /* Desktop table */
+    .table-wrap{overflow:auto;border-radius:10px}
+    table{width:100%;border-collapse:collapse;min-width:760px}
+    thead th{background:linear-gradient(90deg, rgba(15,98,254,0.06), rgba(11,110,79,0.03));padding:10px;text-align:center;font-weight:700;color:var(--primary);border-bottom:1px solid rgba(15,22,36,0.06);font-size:13px}
+    tbody td{padding:10px;text-align:center;border-bottom:1px solid rgba(15,22,36,0.04);color:var(--text);font-size:14px}
+    tbody tr:hover td{background:linear-gradient(90deg, rgba(15,98,254,0.02), transparent)}
+
+    .small-note{font-size:13px;color:var(--muted);margin-top:6px}
+
+    /* Mobile friendly table: transform rows into blocks */
+    @media (max-width:780px){
+      table{min-width:0;border:0}
+      thead{display:none}
+      tbody tr{display:block;margin-bottom:12px;border-radius:10px;background:linear-gradient(180deg, rgba(255,255,255,0.9), rgba(248,250,252,0.95));box-shadow:0 6px 18px rgba(12,18,30,0.04);padding:10px}
+      tbody td{display:flex;justify-content:space-between;padding:8px 10px;border-bottom:0}
+      tbody td[data-label]{width:100%}
+      tbody td[data-label]::before{content:attr(data-label);font-weight:700;color:var(--muted);margin-right:8px}
+      /* make saturday stacked labels clearer */
+      tbody tr:last-child td{padding-bottom:6px}
+    }
+
+    /* Practical table mobile tweaks */
+    @media (max-width:640px){
+      .hero .text h2{font-size:15px}
+      .section{padding:12px}
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="logo">Study Dashboard — Timetable</div>
+      <div class="header-actions">
+        <button class="btn-logout" id="logoutBtn">Logout</button>
+      </div>
+    </header>
+
+    <section class="hero" aria-live="polite">
+      <img src="Shona.jpg" alt="Ms. Silver Soul" />
+      <div class="text">
+        <h2 id="greeting">Hello, Ms. Silver Soul</h2>
+        <p id="greeting-sub">Theory & Practical schedules — mobile-friendly view</p>
+      </div>
+    </section>
+
+    <!-- Theory timetable -->
+    <section class="section" aria-labelledby="theory-title">
+      <h3 id="theory-title">Theory Classes Timing 10:30 am to 1:30 pm</h3>
+      <div class="table-wrap" role="table">
+        <table aria-describedby="theory-note">
+          <thead>
+            <tr>
+              <th>Day</th>
+              <th>9:30-10:30</th>
+              <th>10:30-11:30</th>
+              <th>11:30-12:30</th>
+              <th>12:30-1:30</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td data-label="Day">Monday</td>
+              <td data-label="9:30-10:30"></td>
+              <td data-label="10:30-11:30">PIC</td>
+              <td data-label="11:30-12:30">P'ceutic's-I</td>
+              <td data-label="12:30-1:30">P'Analysis</td>
+            </tr>
+
+            <tr>
+              <td data-label="Day">Tuesday</td>
+              <td data-label="9:30-10:30">P'Analysis (Tutorial)</td>
+              <td data-label="10:30-11:30">P'ceutic's-I</td>
+              <td data-label="11:30-12:30">P'Analysis</td>
+              <td data-label="12:30-1:30">PIC</td>
+            </tr>
+
+            <tr>
+              <td data-label="Day">Wednesday</td>
+              <td data-label="9:30-10:30">PIC (Tutorial)</td>
+              <td data-label="10:30-11:30">P'Analysis</td>
+              <td data-label="11:30-12:30">HAP</td>
+              <td data-label="12:30-1:30">R.M</td>
+            </tr>
+
+            <tr>
+              <td data-label="Day">Thursday</td>
+              <td data-label="9:30-10:30"></td>
+              <td data-label="10:30-11:30">P'ceutic's-I (Tutorial)</td>
+              <td data-label="11:30-12:30">HAP</td>
+              <td data-label="12:30-1:30">C.S</td>
+            </tr>
+
+            <tr>
+              <td data-label="Day">Friday</td>
+              <td data-label="9:30-10:30">HAP (Tutorial)</td>
+              <td data-label="10:30-11:30">C.S</td>
+              <td data-label="11:30-12:30">HAP</td>
+              <td data-label="12:30-1:30">R.M</td>
+            </tr>
+
+            <tr>
+              <td data-label="Day">Saturday</td>
+              <td data-label="9:30-10:30">10:30-11:30<br>P'ceutic's-I</td>
+              <td data-label="10:30-11:30">11:30-12:30<br>PIC</td>
+              <td data-label="11:30-12:30">2:00-3:00<br>P'ceutic's-I</td>
+              <td data-label="12:30-1:30">3:00-4:00<br>PIC</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div id="theory-note" class="small-note">For 2nd, 4th and 5th Saturday workload (From 10:30am to 4pm). Lunch Time 1:30 pm to 2:00 pm</div>
+    </section>
+
+    <!-- Practical timetable -->
+    <section class="section" aria-labelledby="practical-title">
+      <h3 id="practical-title">Practical Timing 2 pm to 6 pm</h3>
+      <div class="table-wrap" role="table">
+        <table>
+          <thead>
+            <tr>
+              <th>Day</th>
+              <th>Batch-A</th>
+              <th>Batch-B</th>
+              <th>Batch-C</th>
+              <th>Batch-D</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td data-label="Day">Mon</td>
+              <td data-label="Batch-A">HAP</td>
+              <td data-label="Batch-B">PIC</td>
+              <td data-label="Batch-C">P'ceutic's-I</td>
+              <td data-label="Batch-D">P'Analysis</td>
+            </tr>
+            <tr>
+              <td data-label="Day">Tues</td>
+              <td data-label="Batch-A">PIC</td>
+              <td data-label="Batch-B">HAP</td>
+              <td data-label="Batch-C">C.S</td>
+              <td data-label="Batch-D">P'ceutic's-I</td>
+            </tr>
+            <tr>
+              <td data-label="Day">Wed</td>
+              <td data-label="Batch-A">P'Analysis</td>
+              <td data-label="Batch-B">P'ceutic's-I</td>
+              <td data-label="Batch-C">HAP</td>
+              <td data-label="Batch-D">C.S</td>
+            </tr>
+            <tr>
+              <td data-label="Day">Thur</td>
+              <td data-label="Batch-A">C.S</td>
+              <td data-label="Batch-B">P'Analysis</td>
+              <td data-label="Batch-C">PIC</td>
+              <td data-label="Batch-D">HAP</td>
+            </tr>
+            <tr>
+              <td data-label="Day">Fri</td>
+              <td data-label="Batch-A">P'ceutic's-I</td>
+              <td data-label="Batch-B">C.S</td>
+              <td data-label="Batch-C">P'Analysis</td>
+              <td data-label="Batch-D">PIC</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <footer style="text-align:center;color:var(--muted);font-size:13px;margin-top:6px">Made by @Your_AHOO❤️</footer>
+  </div>
+
+  <!-- Logout modal (same pattern used across site) -->
+  <div class="modal-backdrop" id="logout-modal" role="dialog" aria-modal="true" aria-hidden="true" style="display:none;align-items:center;justify-content:center;position:fixed;inset:0;background:rgba(2,6,23,0.45);z-index:70">
+    <div class="modal" style="background:var(--card);padding:22px;border-radius:18px;width:min(92%,560px);box-shadow:0 30px 60px rgba(2,6,23,0.28);border:1px solid rgba(15,22,36,0.06)">
+      <h3 style="margin:0 0 8px;color:var(--primary);font-size:20px">Confirm logout</h3>
+      <p style="margin:0 0 12px;color:var(--muted)">Please type the phrase <strong>"I Love You Baby"</strong> (case-insensitive) to confirm logout.</p>
+      <input id="logout-input" class="input" placeholder="Type the phrase here" aria-label="Logout confirmation input" style="width:100%;min-height:52px;padding:14px 18px;border-radius:12px;border:2px solid rgba(17,24,39,0.12);background:var(--card);font-size:15px;box-shadow: inset 0 1px 0 rgba(255,255,255,0.6)" />
+      <div style="display:flex;gap:12px;justify-content:flex-start;margin-top:14px">
+        <button id="cancel-logout" style="padding:10px 14px;border-radius:12px;border:1px solid rgba(17,24,39,0.06);background:white;cursor:pointer;box-shadow: 0 6px 18px rgba(12,18,30,0.06)">Cancel</button>
+        <button id="logout-next" style="padding:10px 16px;border-radius:12px;background:linear-gradient(90deg,var(--primary), #2563EB);color:white;border:none;cursor:pointer;box-shadow:0 10px 28px rgba(15,98,254,0.18)">Next</button>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Confirmation overlay -->
+  <div class="modal-backdrop" id="confirm-overlay" role="dialog" aria-modal="true" aria-hidden="true" style="display:none;align-items:center;justify-content:center;position:fixed;inset:0;background:rgba(2,6,23,0.45);z-index:80">
+    <div class="modal" style="background:var(--card);padding:18px;border-radius:14px;width:min(92%,420px);box-shadow:0 24px 48px rgba(2,6,23,0.24);border:1px solid rgba(15,22,36,0.06);text-align:center">
+      <h3 style="margin:0 0 6px;color:var(--secondary);font-size:20px">I Love Too Shona❤️</h3>
+      <p style="margin:6px 0 0;color:var(--muted)">Logging out...</p>
+    </div>
+  </div>
+
+  <script>
+    // Protect page + BFCache handling
+    (function(){
+      try{ if(!sessionStorage.getItem('logged')) window.location.replace('./index.html'); }catch(e){ window.location.replace('./index.html'); }
+      window.addEventListener('pageshow', function(e){ if(e.persisted || !sessionStorage.getItem('logged')) window.location.replace('./index.html'); });
+      document.addEventListener('visibilitychange', function(){ if(document.visibilityState === 'visible' && !sessionStorage.getItem('logged')) window.location.replace('./index.html'); });
+    })();
+
+    // Greeting
+    (function(){const now=new Date();const hour=now.getHours();const g=hour<12?'Good Morning, Ms. Silver Soul':hour<17?'Good Afternoon, Ms. Silver Soul':'Good Evening, Ms. Silver Soul';const sub=hour<12?'Ready for a focused study session?':hour<17?'Keep the momentum going.':'Wrap up with a calm review.';document.getElementById('greeting').textContent=g;document.getElementById('greeting-sub').textContent=sub;})();
+
+    // Logout handling (same as other pages)
+    const logoutBtn = document.getElementById('logoutBtn');
+    const logoutModal = document.getElementById('logout-modal');
+    const logoutInput = document.getElementById('logout-input');
+    const logoutNext = document.getElementById('logout-next');
+    const cancelLogout = document.getElementById('cancel-logout');
+
+    function openModal(){ logoutModal.style.display='flex'; logoutModal.classList.add('show'); logoutModal.setAttribute('aria-hidden','false'); }
+    function closeModal(){ logoutModal.style.display='none'; logoutModal.classList.remove('show'); logoutModal.setAttribute('aria-hidden','true'); }
+
+    logoutBtn.addEventListener('click', ()=>{ logoutInput.value=''; openModal(); setTimeout(()=>logoutInput.focus(),40); });
+    cancelLogout.addEventListener('click', ()=> closeModal());
+
+    logoutNext.addEventListener('click', ()=>{
+      const val=(logoutInput.value||'').trim().toLowerCase();
+      if(val==='i love you baby'){
+        closeModal();
+        // show confirmation overlay then logout
+        const confirmOverlay = document.getElementById('confirm-overlay');
+        confirmOverlay.style.display = 'flex';
+        confirmOverlay.classList.add('show');
+        try{ sessionStorage.removeItem('logged'); }catch(e){}
+        try{ localStorage.clear(); }catch(e){}
+        setTimeout(()=>{ window.location.replace('./index.html'); },900);
+      } else {
+        logoutInput.animate([{transform:'translateX(0)'},{transform:'translateX(-8px)'},{transform:'translateX(8px)'},{transform:'translateX(0)'}],{duration:260,iterations:1});
+        logoutInput.focus();
+      }
+    });
+
+    logoutInput.addEventListener('keydown', (e)=>{ if(e.key==='Enter') logoutNext.click(); });
+
+    // Close modal on Escape
+    document.addEventListener('keydown',(e)=>{ if(e.key==='Escape') closeModal(); });
+  </script>
+</body>
+</html>

@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Subjects — Ms. Silver Soul</title>
+  <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate" />
+  <meta http-equiv="Pragma" content="no-cache" />
+  <meta http-equiv="Expires" content="0" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --primary:#0F62FE; --secondary:#0B6E4F; --accent:#FF6B6B;
+      --bg:#F8FAFC; --text:#111827; --muted:#6B7280; --card:#FFFFFF;
+      --focus: rgba(15,98,254,0.24);
+      --max-w:1100px;
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial;background:var(--bg);color:var(--text);padding:24px;min-height:100vh;display:flex;justify-content:center}
+    .container{width:100%;max-width:var(--max-w)}
+
+    header{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px}
+    .logo{font-family:Poppins;font-weight:700;color:var(--primary);font-size:20px}
+    .header-actions{display:flex;gap:12px;align-items:center}
+    .btn-logout{padding:8px 12px;border-radius:10px;border:1px solid #E6E9EE;background:white;cursor:pointer}
+
+    .hero{background:linear-gradient(90deg, rgba(15,98,254,0.06), rgba(11,110,79,0.03));padding:18px;border-radius:12px;display:flex;align-items:center;gap:14px;box-shadow:0 6px 18px rgba(12,18,30,0.06);margin-bottom:22px}
+    .hero img{width:56px;height:56px;border-radius:50%;object-fit:cover}
+    .hero .text h2{margin:0;font-size:18px}
+    .hero .text p{margin:0;color:var(--muted);font-size:13px}
+
+    .list{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px}
+    .subject{background:var(--card);padding:18px;border-radius:12px;box-shadow:0 8px 20px rgba(12,18,30,0.06);cursor:pointer;transition:transform .16s ease, box-shadow .16s ease;display:flex;align-items:center;gap:12px}
+    .subject:hover{transform:translateY(-6px);box-shadow:0 18px 36px rgba(15,98,254,0.12)}
+    .subject:focus{outline:none;box-shadow:0 10px 30px var(--focus)}
+    .subject .dot{width:44px;height:44px;border-radius:10px;background:linear-gradient(135deg,var(--primary),var(--accent));display:flex;align-items:center;justify-content:center;color:white;font-weight:700}
+    .subject h3{margin:0;font-size:16px}
+
+    footer{margin-top:28px;text-align:center;color:var(--muted);font-size:13px}
+
+    /* Logout Modal styling matching provided image */
+    .modal-backdrop{position:fixed;inset:0;background:rgba(2,6,23,0.45);display:none;align-items:center;justify-content:center;z-index:60}
+    .modal-backdrop.show{display:flex}
+    .modal{background:var(--card);padding:22px;border-radius:18px;width:min(92%,560px);box-shadow:0 30px 60px rgba(2,6,23,0.28);border:1px solid rgba(15,22,36,0.06)}
+    .modal h3{margin:0 0 8px;color:var(--primary);font-size:20px}
+    .modal p{margin:0 0 12px;color:var(--muted)}
+    .modal .actions{display:flex;gap:12px;justify-content:flex-start;margin-top:14px}
+
+    /* Styled input like the image */
+    .input{width:100%; min-height:52px; padding:14px 18px; border-radius:12px; border:2px solid rgba(17,24,39,0.12); background:var(--card); font-size:15px; box-shadow: inset 0 1px 0 rgba(255,255,255,0.6)}
+
+    .btn-secondary{padding:10px 14px;border-radius:12px;border:1px solid rgba(17,24,39,0.06);background:white;cursor:pointer;box-shadow: 0 6px 18px rgba(12,18,30,0.06)}
+    .btn-open{padding:10px 16px;border-radius:12px;background:linear-gradient(90deg,var(--primary), #2563EB);color:white;border:none;cursor:pointer;box-shadow:0 10px 28px rgba(15,98,254,0.18);transition:transform .16s ease,box-shadow .16s ease}
+    .btn-open:hover{transform:translateY(-3px);box-shadow:0 16px 40px rgba(15,98,254,0.22)}
+
+    @media (max-width:640px){.list{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="logo">Study Dashboard — Subjects</div>
+      <div class="header-actions">
+        <button class="btn-logout" id="logoutBtn">Logout</button>
+      </div>
+    </header>
+
+    <section class="hero" aria-live="polite">
+      <img src="Shona.jpg" alt="Ms. Silver Soul" />
+      <div class="text">
+        <h2 id="greeting">Hello, Ms. Silver Soul</h2>
+        <p id="greeting-sub">Choose a subject to open.</p>
+      </div>
+    </section>
+
+    <main role="main">
+      <div class="list" id="subjectList">
+        <div class="subject" tabindex="0" data-title="Human Anatomy" data-href="HumanAnatomy.html">
+          <div class="dot">HA</div>
+          <div>
+            <h3>Human Anatomy</h3>
+          </div>
+        </div>
+
+        <div class="subject" tabindex="0" data-title="Pharmaceutical Analysis" data-href="pharmaceuticalanalysis.html">
+          <div class="dot">PA</div>
+          <div>
+            <h3>Pharmaceutical Analysis</h3>
+          </div>
+        </div>
+
+        <div class="subject" tabindex="0" data-title="Pharmaceutics" data-href="pharmaceutics.html">
+          <div class="dot">P</div>
+          <div>
+            <h3>Pharmaceutics</h3>
+          </div>
+        </div>
+
+        <div class="subject" tabindex="0" data-title="Pharmaceutical Inorganic Chemistry" data-href="pic.html">
+          <div class="dot">PIC</div>
+          <div>
+            <h3>Pharmaceutical Inorganic Chemistry</h3>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer>Made by @Your_AHOO❤️</footer>
+  </div>
+
+  <!-- Logout Modal -->
+  <div class="modal-backdrop" id="logout-modal" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="modal" role="document">
+      <h3>Confirm logout</h3>
+      <p>Please type the phrase <strong>"I Love You Baby"</strong> (case-insensitive) to confirm logout.</p>
+      <input id="logout-input" class="input" placeholder="Type the phrase here" aria-label="Logout confirmation input" />
+      <div class="actions">
+        <button class="btn-secondary" id="cancel-logout">Cancel</button>
+        <button class="btn-open" id="logout-next">Next</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Confirmation overlay -->
+  <div class="modal-backdrop" id="confirm-overlay" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="modal" style="text-align:center">
+      <h3 id="confirm-text" style="margin:0 0 8px;color:var(--secondary);font-size:18px">I Love Too Shona❤️</h3>
+      <p style="color:var(--muted)">Logging out and returning to welcome page...</p>
+    </div>
+  </div>
+
+  <script>
+    // Protect page and handle BFCache/back navigation
+    (function(){
+      try{
+        if(!sessionStorage.getItem('logged')){
+          window.location.replace('./index.html');
+        }
+      }catch(e){ window.location.replace('./index.html'); }
+
+      window.addEventListener('pageshow', function(e){
+        if(e.persisted || !sessionStorage.getItem('logged')){
+          window.location.replace('./index.html');
+        }
+      });
+
+      document.addEventListener('visibilitychange', function(){
+        if(document.visibilityState === 'visible' && !sessionStorage.getItem('logged')){
+          window.location.replace('./index.html');
+        }
+      });
+    })();
+
+    // Greeting
+    (function(){
+      const now = new Date(); const hour = now.getHours();
+      const g = hour < 12 ? 'Good Morning, Ms. Silver Soul' : hour < 17 ? 'Good Afternoon, Ms. Silver Soul' : 'Good Evening, Ms. Silver Soul';
+      const sub = hour < 12 ? 'Ready for a focused study session?' : hour < 17 ? 'Keep the momentum going.' : 'Wrap up with a calm review.';
+      document.getElementById('greeting').textContent = g;
+      document.getElementById('greeting-sub').textContent = sub;
+    })();
+
+    // Direct subject navigation
+    document.querySelectorAll('.subject').forEach(sub=>{
+      sub.addEventListener('click', ()=>{ const href = sub.getAttribute('data-href'); if(href) window.location.href = href; });
+      sub.addEventListener('keydown', e=>{ if(e.key==='Enter') sub.click(); });
+    });
+
+    // Logout flow (same as previous pages)
+    const logoutBtn = document.getElementById('logoutBtn');
+    const logoutModal = document.getElementById('logout-modal');
+    const logoutInput = document.getElementById('logout-input');
+    const logoutNext = document.getElementById('logout-next');
+    const cancelLogout = document.getElementById('cancel-logout');
+    const confirmOverlay = document.getElementById('confirm-overlay');
+
+    function openModal(el){ el.classList.add('show'); el.setAttribute('aria-hidden','false'); }
+    function closeModal(el){ el.classList.remove('show'); el.setAttribute('aria-hidden','true'); }
+
+    logoutBtn.addEventListener('click', ()=>{ logoutInput.value=''; openModal(logoutModal); setTimeout(()=>logoutInput.focus(),40); });
+    cancelLogout.addEventListener('click', ()=> closeModal(logoutModal));
+
+    logoutNext.addEventListener('click', ()=>{ const val = (logoutInput.value||'').trim().toLowerCase();
+      if(val === 'i love you baby'){
+        closeModal(logoutModal); openModal(confirmOverlay);
+        setTimeout(()=>{ try{ sessionStorage.removeItem('logged'); }catch(e){} try{ localStorage.clear(); }catch(e){} window.location.replace('./index.html'); },1100);
+      } else { logoutInput.animate([{transform:'translateX(0)'},{transform:'translateX(-8px)'},{transform:'translateX(8px)'},{transform:'translateX(0)'}],{duration:260,iterations:1}); logoutInput.focus(); }
+    });
+
+    logoutInput.addEventListener('keydown',(e)=>{ if(e.key==='Enter') logoutNext.click(); });
+
+    // close modals on Escape
+    document.addEventListener('keydown',(e)=>{ if(e.key==='Escape') document.querySelectorAll('.modal-backdrop.show').forEach(m=>closeModal(m)); });
+  </script>
+</body>
+</html>

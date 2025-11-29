@@ -1,0 +1,328 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Pharmaceutics — Questions</title>
+  <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate" />
+  <meta http-equiv="Pragma" content="no-cache" />
+  <meta http-equiv="Expires" content="0" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --primary:#0F62FE; --secondary:#0B6E4F; --accent:#FF6B6B;
+      --bg:#F8FAFC; --text:#111827; --muted:#6B7280;
+      --card:#FFFFFF; --focus: rgba(15,98,254,0.24); --max-w:1100px;
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial;background:var(--bg);color:var(--text);padding:22px;min-height:100vh;display:flex;justify-content:center}
+    .wrap{width:100%;max-width:var(--max-w)}
+
+    header{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px}
+    .logo{font-family:Poppins;font-weight:700;color:var(--primary);font-size:20px}
+    .btn-logout{padding:8px 12px;border-radius:10px;border:1px solid #E6E9EE;background:white;cursor:pointer}
+
+    .hero{background:linear-gradient(90deg, rgba(15,98,254,0.06), rgba(11,110,79,0.03));padding:14px;border-radius:12px;display:flex;align-items:center;gap:14px;box-shadow:0 6px 18px rgba(12,18,30,0.06);margin-bottom:18px}
+    .hero img{width:56px;height:56px;border-radius:50%;object-fit:cover}
+    .hero .text h2{margin:0;font-size:18px}
+    .hero .text p{margin:0;color:var(--muted);font-size:13px}
+
+    .card{background:var(--card);padding:18px;border-radius:12px;box-shadow:0 10px 30px rgba(12,18,30,0.06);}
+    .section-title{font-weight:700;margin:6px 0 12px;font-size:16px;color:var(--text)}
+
+    /* Lists and choices */
+    ol { margin-left:22px; padding-left:8px; }
+    ol li { margin:8px 0; }
+    .choices { display:flex; flex-wrap:wrap; gap:6px 28px; margin-top:8px; }
+    .choice { min-width:160px; flex:1 1 160px; color:var(--text); font-size:15px; }
+    @media (max-width:720px){ .choice { min-width:140px; flex:1 1 140px } }
+
+    .subtle{color:var(--muted);font-size:13px;margin-top:14px}
+    footer{margin-top:18px;text-align:center;color:var(--muted);font-size:13px}
+
+    /* Logout modal + confirm overlay */
+    .modal-backdrop{position:fixed;inset:0;background:rgba(2,6,23,0.45);display:none;align-items:center;justify-content:center;z-index:80}
+    .modal-backdrop.show{display:flex}
+    .modal{background:var(--card);padding:20px;border-radius:14px;width:min(92%,560px);box-shadow:0 30px 60px rgba(2,6,23,0.28);border:1px solid rgba(15,22,36,0.06)}
+    .input{width:100%;min-height:48px;padding:12px 14px;border-radius:10px;border:1px solid rgba(15,22,36,0.06);}
+    .btn-secondary{padding:10px 14px;border-radius:10px;border:1px solid rgba(17,24,39,0.06);background:white;cursor:pointer}
+    .btn-open{padding:10px 16px;border-radius:10px;background:linear-gradient(90deg,var(--primary), #2563EB);color:white;border:none;cursor:pointer}
+
+    @media (max-width:640px){ .hero{padding:12px} .card{padding:14px} }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="logo">Pharmaceutics — Questions</div>
+      <div>
+        <button id="logoutBtn" class="btn-logout">Logout</button>
+      </div>
+    </header>
+
+    <section class="hero" aria-live="polite">
+      <img src="Shona.jpg" alt="Ms. Silver Soul" />
+      <div class="text">
+        <h2 id="greeting">Good Afternoon, Ms. Silver Soul</h2>
+       
+      </div>
+    </section>
+
+    <main>
+      <div class="card">
+
+        <!-- 1. Objective type questions -->
+        <div class="section-title">1. Objective type questions :</div>
+        <ol>
+          <li>Define syrup.</li>
+          <li>Name the various pharmacopoeias commonly used in India.</li>
+          <li>Give the classification of solid dosage forms.</li>
+          <li>Describe advantages of powder.</li>
+          <li>Give Young’s formula.</li>
+          <li>Enlist excipients used in formulation of liquid dosage forms.</li>
+          <li>Give difference between liniments and lotions.</li>
+          <li>Define emulsion. Write its advantages.</li>
+          <li>Enlist the names of evaluation test of suppositories.</li>
+          <li>Enlist the preparation method of ointment.</li>
+        </ol>
+
+        <!-- 2. Long answers -->
+        <div class="section-title" style="margin-top:12px">2. Long answers (solve any <strong>two</strong>) :</div>
+        <ol>
+          <li>Give in brief the history of pharmacopoeia of India.</li>
+          <li>How will you classify different dosage forms? Write the importance of dosage form.</li>
+          <li>Discuss the stability problems and methods to overcome the emulsion.</li>
+        </ol>
+
+        <!-- 3. Short Answers -->
+        <div class="section-title" style="margin-top:12px">3. Short Answers (solve any <strong>seven</strong>) :</div>
+        <ol>
+          <li>What are ointments? Classify ointment bases used in preparation of ointments.</li>
+          <li>Define suspension. Explain the methods of preparation of suspensions.</li>
+          <li>Discuss excipients used in liquid dosage forms.</li>
+          <li>Describe different parts of prescription.</li>
+          <li>Define posology. Explain factors affecting posology.</li>
+          <li>What are the monophasic liquid dosage forms? Write in detail about syrups and elixirs.</li>
+          <li>Define incompatibilities. Discuss about physical incompatibility.</li>
+          <li>Describe the evaluation test of semi-solid dosage forms.</li>
+          <li>Add a note on British pharmacopoeia.</li>
+        </ol>
+
+        <hr style="margin:14px 0;border:none;border-top:1px solid rgba(15,22,36,0.04)">
+
+        <!-- A. MCQs -->
+        <div class="section-title">A. Solve following Multiple Choice Questions :</div>
+        <ol class="mcq-list">
+          <li>
+            _________ is not the official book (Pharmacopoeia).
+            <div class="choices">
+              <div class="choice">(a) IP</div>
+              <div class="choice">(b) BP</div>
+              <div class="choice">(c) USP</div>
+              <div class="choice">(d) MCQ book by Prince Publication</div>
+            </div>
+          </li>
+
+          <li>
+            Paediatric doses are not calculated on the basis of __________.
+            <div class="choices">
+              <div class="choice">(a) Body surface area</div>
+              <div class="choice">(b) Age</div>
+              <div class="choice">(c) Solubility of drug</div>
+              <div class="choice">(d) Body weight</div>
+            </div>
+          </li>
+
+          <li>
+            _________ are the monophasic liquid dosage forms.
+            <div class="choices">
+              <div class="choice">(a) Syrups</div>
+              <div class="choice">(b) Ear drops</div>
+              <div class="choice">(c) Elixirs</div>
+              <div class="choice">(d) All of the above</div>
+            </div>
+          </li>
+
+          <li>
+            Ointments are _________ type of dosage form.
+            <div class="choices">
+              <div class="choice">(a) Liquid</div>
+              <div class="choice">(b) Semisolid</div>
+              <div class="choice">(c) Solid</div>
+              <div class="choice">(d) None of the above</div>
+            </div>
+          </li>
+
+          <li>
+            _________ is/are the factor/s affecting posology.
+            <div class="choices">
+              <div class="choice">(a) Age</div>
+              <div class="choice">(b) Weight</div>
+              <div class="choice">(c) Sex</div>
+              <div class="choice">(d) All of the above</div>
+            </div>
+          </li>
+
+          <li>
+            Emulsions are formulated with the aid of __________.
+            <div class="choices">
+              <div class="choice">(a) Precipitating agent</div>
+              <div class="choice">(b) Emulsifying agent</div>
+              <div class="choice">(c) Suspending agent</div>
+              <div class="choice">(d) None of the above</div>
+            </div>
+          </li>
+
+          <li>
+            Simple syrup I.P. contains _________ % w/v of sucrose.
+            <div class="choices">
+              <div class="choice">(a) 60.25</div>
+              <div class="choice">(b) 50</div>
+              <div class="choice">(c) 66.67</div>
+              <div class="choice">(d) 33.33</div>
+            </div>
+          </li>
+
+          <li>
+            Unstability of emulsions is indicated by __________.
+            <div class="choices">
+              <div class="choice">(a) Creaming</div>
+              <div class="choice">(b) Cracking</div>
+              <div class="choice">(c) Phase inversion</div>
+              <div class="choice">(d) All of the above</div>
+            </div>
+          </li>
+
+          <li>
+            __________ is an example of suspending agent for suspension.
+            <div class="choices">
+              <div class="choice">(a) Methyl cellulose</div>
+              <div class="choice">(b) NaCl</div>
+              <div class="choice">(c) Glucose</div>
+              <div class="choice">(d) All of the above</div>
+            </div>
+          </li>
+
+          <li>
+            _________ is not a part of prescription.
+            <div class="choices">
+              <div class="choice">(a) Superscription</div>
+              <div class="choice">(b) No. of patient's family members</div>
+              <div class="choice">(c) Inscription</div>
+              <div class="choice">(d) Signature</div>
+            </div>
+          </li>
+        </ol>
+
+        <!-- B. Short solves -->
+        <div class="section-title" style="margin-top:12px">(B) Solve the following questions :</div>
+        <ol>
+          <li>Give the advantages of liquid dosage forms.</li>
+          <li>Give difference between simple and compound powders.</li>
+          <li>Write the names of biphasic liquid dosage forms.</li>
+          <li>Enlist different types of suppository bases.</li>
+          <li>Enlist various types of pharmaceutical incompatibilities with examples.</li>
+        </ol>
+
+        <!-- 2. Long (any two) -->
+        <div class="section-title" style="margin-top:12px">2. Solve any <strong>two</strong> of the following :</div>
+        <ol>
+          <li>Give detailed classification of dosage forms with their examples.</li>
+          <li>Discuss the formulations of emulsion. Add a note on the tests for identification of emulsion.</li>
+          <li>Discuss formulation and evaluation of ointments and gels.</li>
+        </ol>
+
+        <!-- 3. Solve any seven -->
+        <div class="section-title" style="margin-top:12px">3. Solve any <strong>seven</strong> of the following :</div>
+        <ol>
+          <li>Write about physical incompatibility with examples.</li>
+          <li>Give the formulation of creams with example.</li>
+          <li>How syrups are prepared?</li>
+          <li>Give the methods of calculations of paediatric dose.</li>
+          <li>Write about formulation of effervescent powders.</li>
+          <li>Discuss about pharmacy as a career option.</li>
+          <li>Write about Indian Pharmacopoeia in detail.</li>
+          <li>Discuss about various excipients used in the liquid dosage forms with examples.</li>
+          <li>Write about stability of suspensions and how to overcome stability problems.</li>
+        </ol>
+
+       
+      </div>
+    </main>
+
+    <footer>Made by @Your_AHOO❤️</footer>
+  </div>
+
+  <!-- Logout modal -->
+  <div class="modal-backdrop" id="logout-modal" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="modal" role="document">
+      <h3 style="margin:0 0 8px;color:var(--primary);font-size:18px">Confirm logout</h3>
+      <p style="margin:0 0 12px;color:var(--muted)">Please type the phrase <strong>"I Love You Baby"</strong> (case-insensitive) to confirm logout.</p>
+      <input id="logout-input" class="input" placeholder="Type the phrase here" aria-label="Logout confirmation input" />
+      <div style="display:flex;gap:12px;justify-content:flex-start;margin-top:14px">
+        <button class="btn-secondary" id="cancel-logout">Cancel</button>
+        <button class="btn-open" id="logout-next">Next</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Confirm overlay -->
+  <div class="modal-backdrop" id="confirm-overlay" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="modal" style="text-align:center">
+      <h3 style="margin:0 0 8px;color:var(--secondary);font-size:18px">I Love Too Shona❤️</h3>
+      <p style="margin:0;color:var(--muted)">Logging out...</p>
+    </div>
+  </div>
+
+  <script>
+    // Protect page + BFCache
+    (function(){
+      try{ if(!sessionStorage.getItem('logged')) window.location.replace('./index.html'); }catch(e){ window.location.replace('./index.html'); }
+      window.addEventListener('pageshow', function(e){ if(e.persisted || !sessionStorage.getItem('logged')) window.location.replace('./index.html'); });
+      document.addEventListener('visibilitychange', function(){ if(document.visibilityState === 'visible' && !sessionStorage.getItem('logged')) window.location.replace('./index.html'); });
+    })();
+
+    // Greeting (time-based header)
+    (function(){
+      try {
+        const now = new Date();
+        const hour = now.getHours();
+        const g = hour < 12 ? 'Good Morning, Ms. Silver Soul' : hour < 17 ? 'Good Afternoon, Ms. Silver Soul' : 'Good Evening, Ms. Silver Soul';
+        document.getElementById('greeting').textContent = g;
+        document.getElementById('greeting-sub').textContent = 'Question bank — add questions directly into the HTML.';
+      } catch(e){}
+    })();
+
+    // Logout flow
+    const logoutBtn = document.getElementById('logoutBtn');
+    const logoutModal = document.getElementById('logout-modal');
+    const logoutInput = document.getElementById('logout-input');
+    const logoutNext = document.getElementById('logout-next');
+    const cancelLogout = document.getElementById('cancel-logout');
+    const confirmOverlay = document.getElementById('confirm-overlay');
+
+    function openModal(){ logoutModal.classList.add('show'); logoutModal.style.display='flex'; logoutModal.setAttribute('aria-hidden','false'); setTimeout(()=>logoutInput.focus(),40); }
+    function closeModal(){ logoutModal.classList.remove('show'); logoutModal.style.display='none'; logoutModal.setAttribute('aria-hidden','true'); }
+
+    logoutBtn.addEventListener('click', ()=>{ logoutInput.value=''; openModal(); });
+    cancelLogout.addEventListener('click', ()=> closeModal());
+
+    logoutNext.addEventListener('click', ()=>{
+      const val=(logoutInput.value||'').trim().toLowerCase();
+      if(val==='i love you baby'){
+        closeModal();
+        confirmOverlay.style.display='flex'; confirmOverlay.classList.add('show');
+        try{ sessionStorage.removeItem('logged'); }catch(e){}
+        try{ localStorage.clear(); }catch(e){}
+        setTimeout(()=>{ window.location.replace('./index.html'); },900);
+      } else {
+        logoutInput.animate([{transform:'translateX(0)'},{transform:'translateX(-8px)'},{transform:'translateX(8px)'},{transform:'translateX(0)'}],{duration:260,iterations:1});
+        logoutInput.focus();
+      }
+    });
+
+    logoutInput.addEventListener('keydown',(e)=>{ if(e.key==='Enter') logoutNext.click(); });
+    document.addEventListener('keydown',(e)=>{ if(e.key==='Escape') closeModal(); });
+  </script>
+</body>
+</html>

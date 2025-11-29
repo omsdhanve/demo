@@ -1,0 +1,495 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Human Anatomy — Ms. Silver Soul</title>
+  <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate" />
+  <meta http-equiv="Pragma" content="no-cache" />
+  <meta http-equiv="Expires" content="0" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{ --primary:#0F62FE; --secondary:#0B6E4F; --accent:#FF6B6B; --bg:#F8FAFC; --text:#111827; --muted:#6B7280; --card:#FFFFFF; --focus: rgba(15,98,254,0.24); --max-w:1100px }
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial;background:var(--bg);color:var(--text);padding:22px;min-height:100vh;display:flex;justify-content:center}
+    .wrap{width:100%;max-width:var(--max-w)}
+
+    header{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px}
+    .logo{font-family:Poppins;font-weight:700;color:var(--primary);font-size:20px}
+    .header-actions{display:flex;gap:12px;align-items:center}
+    .btn-logout{padding:8px 12px;border-radius:10px;border:1px solid #E6E9EE;background:white;cursor:pointer}
+
+    .hero{background:linear-gradient(90deg, rgba(15,98,254,0.06), rgba(11,110,79,0.03));padding:14px;border-radius:12px;display:flex;align-items:center;gap:14px;box-shadow:0 6px 18px rgba(12,18,30,0.06);margin-bottom:18px}
+    .hero img{width:56px;height:56px;border-radius:50%;object-fit:cover}
+    .hero .text h2{margin:0;font-size:18px}
+    .hero .text p{margin:0;color:var(--muted);font-size:13px}
+
+    .card{background:var(--card);padding:18px;border-radius:12px;box-shadow:0 10px 30px rgba(12,18,30,0.06);}
+    .q-list{display:flex;flex-direction:column;gap:0;margin-top:4px}
+    .q{padding:6px 10px;border-radius:6px;border:1px solid rgba(15,22,36,0.03);background:#fff;}
+    .q h4{margin:0;font-size:15px;color:var(--primary);display:inline-block;margin-right:6px}
+    .q p{margin:0;color:var(--text);display:inline}
+
+    footer{margin-top:18px;text-align:center;color:var(--muted);font-size:13px}
+
+    /* Logout modal + confirm overlay styles (same look) */
+    .modal-backdrop{position:fixed;inset:0;background:rgba(2,6,23,0.45);display:none;align-items:center;justify-content:center;z-index:80}
+    .modal-backdrop.show{display:flex}
+    .modal{background:var(--card);padding:20px;border-radius:14px;width:min(92%,560px);box-shadow:0 30px 60px rgba(2,6,23,0.28);border:1px solid rgba(15,22,36,0.06)}
+    .input{width:100%;min-height:48px;padding:12px 14px;border-radius:10px;border:1px solid rgba(15,22,36,0.06);}
+    .btn-secondary{padding:10px 14px;border-radius:10px;border:1px solid rgba(17,24,39,0.06);background:white;cursor:pointer}
+    .btn-open{padding:10px 16px;border-radius:10px;background:linear-gradient(90deg,var(--primary), #2563EB);color:white;border:none;cursor:pointer}
+
+    @media (max-width:640px){ .hero{padding:12px} .card{padding:14px} }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="logo">Human Anatomy — Questions</div>
+      <div class="header-actions">
+        <button class="btn-logout" id="logoutBtn">Logout</button>
+      </div>
+    </header>
+
+    <section class="hero" aria-live="polite">
+      <img src="Shona.jpg" alt="Ms. Silver Soul" />
+      <div class="text">
+        <h2 id="greeting">Human Anatomy — Question Bank</h2>
+        
+      </div>
+    </section>
+
+<main>
+  <div class="card" style="padding:14px;">
+    <style>
+      /* local styles for question layout (keeps compact) */
+      .section-title{font-weight:700;margin:6px 0 8px;font-size:16px;color:var(--text)}
+      .mcq-list, .long-list, .short-list, .solve-list, .add-mcq-list { margin:0;padding:0; list-style:none; }
+      .mcq-item, .add-mcq-item{padding:8px 10px;border-top:1px solid rgba(15,22,36,0.03);display:block}
+      .mcq-qnum, .add-qnum{font-weight:700;margin-right:8px}
+      .choices{display:flex;flex-wrap:wrap;gap:6px 20px;margin-top:6px}
+      .choice{min-width:160px; flex:1 1 160px; font-size:15px;color:var(--text)}
+      .long-item, .short-item, .solve-item{padding:8px 6px;border-top:1px solid rgba(15,22,36,0.03)}
+      .subtle{color:var(--muted);font-size:13px;margin-top:6px}
+      @media (max-width:640px){
+        .choice{min-width:140px;flex:1 1 140px}
+      }
+    </style>
+
+    <!-- 1. Multiple Choice Questions -->
+    <div class="section-title">1. Multiple Choice Questions :</div>
+
+    <ol class="mcq-list" style="counter-reset:item; margin-left:0;">
+      <!-- existing 1-20 (kept same as before) -->
+      <li class="mcq-item"><span class="mcq-qnum">(1)</span>
+        <span>Smallest bone in human ear is :</span>
+        <div class="choices">
+          <div class="choice">(a) Incus</div>
+          <div class="choice">(b) Malleus</div>
+          <div class="choice">(c) Stapes</div>
+          <div class="choice">(d) Tassal</div>
+        </div>
+      </li>
+
+      <li class="mcq-item"><span class="mcq-qnum">(2)</span>
+        <span>Lifespan of RBC's is _____ days.</span>
+        <div class="choices">
+          <div class="choice">(a) 10</div>
+          <div class="choice">(b) 15</div>
+          <div class="choice">(c) 120</div>
+          <div class="choice">(d) None of the above</div>
+        </div>
+      </li>
+
+      <li class="mcq-item"><span class="mcq-qnum">(3)</span>
+        <span>α-chain of Hb contain _____ amino acid.</span>
+        <div class="choices">
+          <div class="choice">(a) 191</div>
+          <div class="choice">(b) 146</div>
+          <div class="choice">(c) 141</div>
+          <div class="choice">(d) 5</div>
+        </div>
+      </li>
+
+      <li class="mcq-item"><span class="mcq-qnum">(4)</span>
+        <span>Which of the following is called 'post office of cell' ?</span>
+        <div class="choices">
+          <div class="choice">(a) Nucleus</div>
+          <div class="choice">(b) Mitochondria</div>
+          <div class="choice">(c) Golgi Apparatus</div>
+          <div class="choice">(d) Ribosome</div>
+        </div>
+      </li>
+
+      <li class="mcq-item"><span class="mcq-qnum">(5)</span>
+        <span>How many factors are responsible for blood co-agulation ?</span>
+        <div class="choices">
+          <div class="choice">(a) 11</div>
+          <div class="choice">(b) 12</div>
+          <div class="choice">(c) 13</div>
+          <div class="choice">(d) 14</div>
+        </div>
+      </li>
+
+      <li class="mcq-item"><span class="mcq-qnum">(6)</span>
+        <span>Process of RBC formation is also called as :</span>
+        <div class="choices">
+          <div class="choice">(a) Erythropoiesis</div>
+          <div class="choice">(b) Leucopoiesis</div>
+          <div class="choice">(c) Thrombopoiesis</div>
+          <div class="choice">(d) None of these</div>
+        </div>
+      </li>
+
+      <li class="mcq-item"><span class="mcq-qnum">(7)</span>
+        <span>First cervical vertebra is :</span>
+        <div class="choices">
+          <div class="choice">(a) Atlas</div>
+          <div class="choice">(b) Axis</div>
+          <div class="choice">(c) Sacrum</div>
+          <div class="choice">(d) Lumbar</div>
+        </div>
+      </li>
+
+      <li class="mcq-item"><span class="mcq-qnum">(8)</span>
+        <span>Total number of pairs of cranial nerve in brain :</span>
+        <div class="choices">
+          <div class="choice">(a) 13</div>
+          <div class="choice">(b) 12</div>
+          <div class="choice">(c) 16</div>
+          <div class="choice">(d) 14</div>
+        </div>
+      </li>
+
+      <li class="mcq-item"><span class="mcq-qnum">(9)</span>
+        <span>Human tongue consists of _____ taste buds.</span>
+        <div class="choices">
+          <div class="choice">(a) 10000</div>
+          <div class="choice">(b) 15000</div>
+          <div class="choice">(c) 20000</div>
+          <div class="choice">(d) None of the above</div>
+        </div>
+      </li>
+
+      <li class="mcq-item"><span class="mcq-qnum">(10)</span>
+        <span>Which of the following is prime neurotransmitter in parasympathetic nervous system ?</span>
+        <div class="choices">
+          <div class="choice">(a) Adrenaline</div>
+          <div class="choice">(b) Dopamine</div>
+          <div class="choice">(c) Acetyl-choline</div>
+          <div class="choice">(d) Serotonin</div>
+        </div>
+      </li>
+
+      <li class="mcq-item"><span class="mcq-qnum">(11)</span>
+        <span>The second most-complex structure of human body is :</span>
+        <div class="choices">
+          <div class="choice">(a) Brain</div>
+          <div class="choice">(b) Liver</div>
+          <div class="choice">(c) Eye</div>
+          <div class="choice">(d) Lungs</div>
+        </div>
+      </li>
+
+      <li class="mcq-item"><span class="mcq-qnum">(12)</span>
+        <span>Total number of bones present in axial skeleton :</span>
+        <div class="choices">
+          <div class="choice">(a) 106</div>
+          <div class="choice">(b) 206</div>
+          <div class="choice">(c) 80</div>
+          <div class="choice">(d) 126</div>
+        </div>
+      </li>
+
+      <li class="mcq-item"><span class="mcq-qnum">(13)</span>
+        <span>Adaption phenomenon is associated with which sense ?</span>
+        <div class="choices">
+          <div class="choice">(a) Taste</div>
+          <div class="choice">(b) Hearing</div>
+          <div class="choice">(c) Smell</div>
+          <div class="choice">(d) None of these</div>
+        </div>
+      </li>
+
+      <li class="mcq-item"><span class="mcq-qnum">(14)</span>
+        <span>Which of cranial nerves is responsible for sensation of smell ?</span>
+        <div class="choices">
+          <div class="choice">(a) Vagus</div>
+          <div class="choice">(b) Optic</div>
+          <div class="choice">(c) Olfactory</div>
+          <div class="choice">(d) Glossopharangial</div>
+        </div>
+      </li>
+
+      <li class="mcq-item"><span class="mcq-qnum">(15)</span>
+        <span>Aerobic respiration is performed by :</span>
+        <div class="choices">
+          <div class="choice">(a) Peroxisome</div>
+          <div class="choice">(b) Mitochondria</div>
+          <div class="choice">(c) Nucleus</div>
+          <div class="choice">(d) Golgi bodies</div>
+        </div>
+      </li>
+
+      <li class="mcq-item"><span class="mcq-qnum">(16)</span>
+        <span>If we convert human eye in camera then each lens will be of _____ Mega-pixel.</span>
+        <div class="choices">
+          <div class="choice">(a) 70 MP</div>
+          <div class="choice">(b) 276 MP</div>
+          <div class="choice">(c) 576 MP</div>
+          <div class="choice">(d) None of the above</div>
+        </div>
+      </li>
+
+      <li class="mcq-item"><span class="mcq-qnum">(17)</span>
+        <span>Name of IXth clotting factor :</span>
+        <div class="choices">
+          <div class="choice">(a) Fibrinogen</div>
+          <div class="choice">(b) Plasminogen</div>
+          <div class="choice">(c) Christmas factor</div>
+          <div class="choice">(d) Straut power factor</div>
+        </div>
+      </li>
+
+      <li class="mcq-item"><span class="mcq-qnum">(18)</span>
+        <span>The only movable bone of skull is :</span>
+        <div class="choices">
+          <div class="choice">(a) Maxilla</div>
+          <div class="choice">(b) Frontal bone</div>
+          <div class="choice">(c) Temporal bone</div>
+          <div class="choice">(d) Mandible</div>
+        </div>
+      </li>
+
+      <li class="mcq-item"><span class="mcq-qnum">(19)</span>
+        <span>Rim of ear is also called as :</span>
+        <div class="choices">
+          <div class="choice">(a) Auricle</div>
+          <div class="choice">(b) Helix</div>
+          <div class="choice">(c) External Ear</div>
+          <div class="choice">(d) Internal Ear</div>
+        </div>
+      </li>
+
+      <li class="mcq-item"><span class="mcq-qnum">(20)</span>
+        <span>Which one of the following is not function of skeleton ?</span>
+        <div class="choices">
+          <div class="choice">(a) Breathing</div>
+          <div class="choice">(b) Hearing</div>
+          <div class="choice">(c) Excretion</div>
+          <div class="choice">(d) Blood cell formation</div>
+        </div>
+      </li>
+    </ol>
+
+    <!-- Additional MCQs from screenshots (continuous numbering) -->
+    <div class="section-title" style="margin-top:12px"></div>
+    <ol class="add-mcq-list" style="margin-left:0;">
+      <li class="add-mcq-item"><span class="add-qnum">(21)</span>
+        <span>What is responsible for blood clotting ?</span>
+        <div class="choices">
+          <div class="choice">(a) Plasma</div>
+          <div class="choice">(b) Platelets</div>
+          <div class="choice">(c) Corpuscles</div>
+          <div class="choice">(d) Protein</div>
+        </div>
+      </li>
+
+      <li class="add-mcq-item"><span class="add-qnum">(22)</span>
+        <span>Sense of smell is perceived by ________.</span>
+        <div class="choices">
+          <div class="choice">(a) Pituitary</div>
+          <div class="choice">(b) Hypothalamus</div>
+          <div class="choice">(c) Olfactory lobe</div>
+          <div class="choice">(d) Cerebrum</div>
+        </div>
+      </li>
+
+      <li class="add-mcq-item"><span class="add-qnum">(23)</span>
+        <span>How many bones are present in the Cranium ?</span>
+        <div class="choices">
+          <div class="choice">(a) 5</div>
+          <div class="choice">(b) 6</div>
+          <div class="choice">(c) 7</div>
+          <div class="choice">(d) 8</div>
+        </div>
+      </li>
+
+      <li class="add-mcq-item"><span class="add-qnum">(24)</span>
+        <span>Which of the following is a connective tissue ?</span>
+        <div class="choices">
+          <div class="choice">(a) Ligament</div>
+          <div class="choice">(b) Tendon</div>
+          <div class="choice">(c) Blood</div>
+          <div class="choice">(d) All of the above</div>
+        </div>
+      </li>
+
+      <li class="add-mcq-item"><span class="add-qnum">(25)</span>
+        <span>What is the normal value of Blood pressure ?</span>
+        <div class="choices">
+          <div class="choice">(a) 100/60 mmHg</div>
+          <div class="choice">(b) 90/50 mmHg</div>
+          <div class="choice">(c) 120/80 mmHg</div>
+          <div class="choice">(d) 140/100 mmHg</div>
+        </div>
+      </li>
+
+      <li class="add-mcq-item"><span class="add-qnum">(26)</span>
+        <span>Two main organs of the lymphatic system are :</span>
+        <div class="choices">
+          <div class="choice">(a) Thymus and Pancreas</div>
+          <div class="choice">(b) Pancreas and Thyroid</div>
+          <div class="choice">(c) Spleen and Thymus</div>
+          <div class="choice">(d) Tonsils and Thyroid</div>
+        </div>
+      </li>
+
+      <li class="add-mcq-item"><span class="add-qnum">(27)</span>
+        <span>Peripheral nervous system of human has ________ pairs of spinal nerves.</span>
+        <div class="choices">
+          <div class="choice">(a) 21</div>
+          <div class="choice">(b) 11</div>
+          <div class="choice">(c) 31</div>
+          <div class="choice">(d) 12</div>
+        </div>
+      </li>
+
+      <li class="add-mcq-item"><span class="add-qnum">(28)</span>
+        <span>Chromosome duplication occurs in which of the following phase ?</span>
+        <div class="choices">
+          <div class="choice">(a) G1 Phase</div>
+          <div class="choice">(b) G2 Phase</div>
+          <div class="choice">(c) S Phase</div>
+          <div class="choice">(d) Prophase</div>
+        </div>
+      </li>
+
+      <li class="add-mcq-item"><span class="add-qnum">(29)</span>
+        <span>Which of the following is not the function of skin ?</span>
+        <div class="choices">
+          <div class="choice">(a) Calcium production</div>
+          <div class="choice">(b) Protection</div>
+          <div class="choice">(c) Excretion of waste</div>
+          <div class="choice">(d) Temperature Regulation</div>
+        </div>
+      </li>
+
+      <li class="add-mcq-item"><span class="add-qnum">(30)</span>
+        <span>Which of the following carries the oxygenated blood ?</span>
+        <div class="choices">
+          <div class="choice">(a) Superior vena-cava</div>
+          <div class="choice">(b) Inferior vena-cava</div>
+          <div class="choice">(c) Coronary Sinus</div>
+          <div class="choice">(d) None of the above</div>
+        </div>
+      </li>
+    </ol>
+
+    <!-- Solve following (short questions list) -->
+    <div class="section-title" style="margin-top:12px">Solve the following questions :</div>
+    <ol class="solve-list" style="margin-left:0;">
+      <li class="solve-item"><strong>(1)</strong> Give the mechanism of Coagulation.</li>
+      <li class="solve-item"><strong>(2)</strong> Define cardiac output.</li>
+      <li class="solve-item"><strong>(3)</strong> What are cell functions ?</li>
+      <li class="solve-item"><strong>(4)</strong> Write types of joint movements.</li>
+      <li class="solve-item"><strong>(5)</strong> Give the functions of the lymphatic system.</li>
+    </ol>
+
+    <!-- 2. Long answer questions -->
+    <div class="section-title" style="margin-top:12px">2. Long answer questions:</div>
+    <ol class="long-list" style="margin-left:0;">
+      <li class="long-item"><strong>(1)</strong> Explain conduction system of heart with the help of a suitable diagram and Renin-Angiotensin system for Blood pressure control.</li>
+      <li class="long-item"><strong>(2)</strong> Define and classify various types of joints in the skeleton and describe any one of them in detail with suitable diagrams.</li>
+      <li class="long-item"><strong>(3)</strong> Describe the composition of blood and write a detailed note on erythrocytes.</li>
+    </ol>
+
+    <!-- 3. Short answer questions -->
+    <div class="section-title" style="margin-top:12px">3. Short answer questions:</div>
+    <ol class="short-list" style="margin-left:0;">
+      <li class="short-item"><strong>(1)</strong> Write a note on sympathetic nervous system.</li>
+      <li class="short-item"><strong>(2)</strong> Explain the structure of eye.</li>
+      <li class="short-item"><strong>(3)</strong> Explain stages of the cell cycle in short.</li>
+      <li class="short-item"><strong>(4)</strong> Describe the characteristics of muscle tissue.</li>
+      <li class="short-item"><strong>(5)</strong> Write a note on the composition and role of nucleus in the cell.</li>
+      <li class="short-item"><strong>(6)</strong> Write a note on (ECG) Electrocardiogram.</li>
+      <li class="short-item"><strong>(7)</strong> Describe different types of anaemia in short.</li>
+      <li class="short-item"><strong>(8)</strong> Give a short note on Appendicular skeletal system.</li>
+      <li class="short-item"><strong>(9)</strong> Draw a diagram to show the internal structure of a lymph node and give its functions.</li>
+    </ol>
+
+    
+  </div>
+</main>
+
+
+
+    <footer>Made by @Your_AHOO❤️</footer>
+  </div>
+
+  <!-- Logout modal -->
+  <div class="modal-backdrop" id="logout-modal" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="modal" role="document">
+      <h3 style="margin:0 0 8px;color:var(--primary);font-size:18px">Confirm logout</h3>
+      <p style="margin:0 0 12px;color:var(--muted)">Please type the phrase <strong>"I Love You Baby"</strong> (case-insensitive) to confirm logout.</p>
+      <input id="logout-input" class="input" placeholder="Type the phrase here" aria-label="Logout confirmation input" />
+      <div style="display:flex;gap:12px;justify-content:flex-start;margin-top:14px">
+        <button class="btn-secondary" id="cancel-logout">Cancel</button>
+        <button class="btn-open" id="logout-next">Next</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Confirm overlay -->
+  <div class="modal-backdrop" id="confirm-overlay" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="modal" style="text-align:center">
+      <h3 style="margin:0 0 8px;color:var(--secondary);font-size:18px">I Love Too Shona❤️</h3>
+      <p style="margin:0;color:var(--muted)">Logging out...</p>
+    </div>
+  </div>
+
+  <script>
+    // Protect page + BFCache
+    (function(){
+      try{ if(!sessionStorage.getItem('logged')) window.location.replace('./index.html'); }catch(e){ window.location.replace('./index.html'); }
+      window.addEventListener('pageshow', function(e){ if(e.persisted || !sessionStorage.getItem('logged')) window.location.replace('./index.html'); });
+      document.addEventListener('visibilitychange', function(){ if(document.visibilityState === 'visible' && !sessionStorage.getItem('logged')) window.location.replace('./index.html'); });
+    })();
+
+    // Greeting (time-based)
+    (function(){const now=new Date();const hour=now.getHours();const g=hour<12?'Good Morning, Ms. Silver Soul':hour<17?'Good Afternoon, Ms. Silver Soul':'Good Evening, Ms. Silver Soul';document.getElementById('greeting').textContent=g;document.getElementById('greeting-sub').textContent='Question bank — add questions directly into the HTML.'})();
+
+    // Logout flow
+    const logoutBtn = document.getElementById('logoutBtn');
+    const logoutModal = document.getElementById('logout-modal');
+    const logoutInput = document.getElementById('logout-input');
+    const logoutNext = document.getElementById('logout-next');
+    const cancelLogout = document.getElementById('cancel-logout');
+    const confirmOverlay = document.getElementById('confirm-overlay');
+
+    function openModal(){ logoutModal.classList.add('show'); logoutModal.style.display='flex'; logoutModal.setAttribute('aria-hidden','false'); }
+    function closeModal(){ logoutModal.classList.remove('show'); logoutModal.style.display='none'; logoutModal.setAttribute('aria-hidden','true'); }
+
+    logoutBtn.addEventListener('click', ()=>{ logoutInput.value=''; openModal(); setTimeout(()=>logoutInput.focus(),40); });
+    cancelLogout.addEventListener('click', ()=> closeModal());
+
+    logoutNext.addEventListener('click', ()=>{
+      const val=(logoutInput.value||'').trim().toLowerCase();
+      if(val==='i love you baby'){
+        closeModal();
+        confirmOverlay.style.display='flex'; confirmOverlay.classList.add('show');
+        try{ sessionStorage.removeItem('logged'); }catch(e){}
+        try{ localStorage.clear(); }catch(e){}
+        setTimeout(()=>{ window.location.replace('./index.html'); },900);
+      } else {
+        logoutInput.animate([{transform:'translateX(0)'},{transform:'translateX(-8px)'},{transform:'translateX(8px)'},{transform:'translateX(0)'}],{duration:260,iterations:1});
+        logoutInput.focus();
+      }
+    });
+
+    logoutInput.addEventListener('keydown',(e)=>{ if(e.key==='Enter') logoutNext.click(); });
+    document.addEventListener('keydown',(e)=>{ if(e.key==='Escape') closeModal(); });
+  </script>
+</body>
+</html>
